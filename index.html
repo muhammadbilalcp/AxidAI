@@ -4,62 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Axid AI</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .app-view {
-            display: none;
-            width: 100%;
-        }
-        .app-view.active-view {
-            display: flex;
-        }
-    </style>
+    <!-- Link to your styles.css -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to your script.js -->
+    <script src="script.js" defer></script>
 </head>
 <body class="text-zinc-200 min-h-screen flex flex-col bg-black overflow-x-hidden selection:bg-zinc-800">
 
+    <!-- TOP NAVIGATION BAR -->
     <nav id="top-nav" class="border-b border-zinc-900 bg-black/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-2 cursor-pointer" onclick="switchView('home')">
+        <div class="flex items-center space-x-2 cursor-pointer" id="nav-logo">
             <div class="w-2 h-2 rounded-full bg-white"></div>
             <span class="text-white font-bold text-lg tracking-tight">Axid AI</span>
         </div>
         <div class="flex items-center space-x-6 text-sm font-medium text-zinc-400">
-            <button onclick="switchView('home')" class="nav-btn hover:text-white transition-colors text-white" id="btn-home">Home</button>
-            <button onclick="switchView('about')" class="nav-btn hover:text-white transition-colors" id="btn-about">About</button>
-            <button onclick="switchView('chat')" class="nav-btn hover:text-white transition-colors" id="btn-chat">Chat</button>
-            <button onclick="switchView('contact')" class="nav-btn hover:text-white transition-colors" id="btn-contact">Contact</button>
-            <button onclick="switchView('feedback')" class="nav-btn hover:text-white transition-colors" id="btn-feedback">Feedback</button>
-            <button class="text-zinc-400 hover:text-white transition-colors text-sm font-semibold ml-2">Sign out</button>
+            <button class="nav-btn hover:text-white transition-colors text-white" id="btn-home">Home</button>
+            <button class="nav-btn hover:text-white transition-colors" id="btn-about">About</button>
+            <button class="nav-btn hover:text-white transition-colors" id="btn-chat">Chat</button>
+            <button class="nav-btn hover:text-white transition-colors" id="btn-contact">Contact</button>
+            <button class="nav-btn hover:text-white transition-colors" id="btn-feedback">Feedback</button>
         </div>
     </nav>
 
+    <!-- MAIN CONTENT FRAME -->
     <main class="flex-1 flex flex-col items-center justify-center w-full relative">
 
+        <!-- 1. HOME VIEW -->
         <section id="view-home" class="app-view active-view w-full max-w-4xl px-6 py-20 flex-col items-center justify-center text-center space-y-8">
             <div class="inline-flex items-center space-x-2 bg-zinc-900/80 border border-zinc-800 text-zinc-400 text-xs px-4 py-1.5 rounded-full">
                 <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>
                 <span>Now in early access</span>
             </div>
-            <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-white py-2">
-                Axid AI
-            </h1>
-            <p class="text-zinc-400 text-lg md:text-xl max-w-lg font-light">
-                Your futuristic AI assistant for everything.
-            </p>
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-white py-2">Axid AI</h1>
+            <p class="text-zinc-400 text-lg md:text-xl max-w-lg font-light">Your futuristic AI assistant for everything.</p>
             <div class="pt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-medium">
-                <button onclick="switchView('chat')" class="bg-white text-black px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-zinc-200 transition-all">
+                <button id="hero-start-chat" class="bg-white text-black px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-zinc-200 transition-all">
                     <span>Start Chatting</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </button>
-                <button onclick="switchView('about')" class="text-zinc-400 hover:text-white transition-colors px-4 py-3">
-                    Learn more
-                </button>
+                <button id="hero-learn-more" class="text-zinc-400 hover:text-white transition-colors px-4 py-3">Learn more</button>
                 <a href="https://youtube.com/@axidaiofficial" target="_blank" class="text-zinc-400 hover:text-white transition-colors px-4 py-3 flex items-center space-x-2">
                     <i class="fa-brands fa-youtube text-red-500"></i>
                     <span>YouTube</span>
@@ -71,80 +58,59 @@
             </div>
         </section>
 
-        <section id="view-about" class="app-view w-full max-w-4xl px-6 py-16 flex-col space-y-10">
+        <!-- 2. ABOUT VIEW -->
+        <section id="view-about" class="app-view hidden w-full max-w-4xl px-6 py-16 flex-col space-y-10">
             <div class="space-y-4">
-                <h2 class="text-4xl font-bold tracking-tight text-white">About Axid AI</h2>
-                <p class="text-zinc-400 max-w-2xl leading-relaxed text-base font-light">
-                    Axid AI is your all-in-one futuristic AI assistant — designed to feel calm, professional, and fast. We help you think, build, learn, and create.
-                </p>
+                <h2 class="text-4xl font-bold text-white">About Axid AI</h2>
+                <p class="text-zinc-400 max-w-2xl font-light">Your all-in-one futuristic AI assistant — designed to feel calm, professional, and fast.</p>
             </div>
             <div class="border border-zinc-900 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 bg-zinc-950/40">
                 <div class="p-8 border-b border-zinc-900 md:border-r space-y-2">
                     <h3 class="text-white font-medium">Learning</h3>
-                    <p class="text-zinc-500 text-sm font-light">Summaries, study guides, flashcards, and clear explanations on any subject.</p>
+                    <p class="text-zinc-500 text-sm font-light">Summaries, study guides, and clear explanations on any subject.</p>
                 </div>
                 <div class="p-8 border-b border-zinc-900 space-y-2">
                     <h3 class="text-white font-medium">Chatting</h3>
-                    <p class="text-zinc-500 text-sm font-light">Friendly conversation, brainstorming, and ideation whenever you need a partner.</p>
+                    <p class="text-zinc-500 text-sm font-light">Friendly conversation, brainstorming, and ideation loops.</p>
                 </div>
                 <div class="p-8 border-b border-zinc-900 md:border-r space-y-2">
                     <h3 class="text-white font-medium">Coding</h3>
-                    <p class="text-zinc-500 text-sm font-light">Write, debug, refactor, and understand code across many languages.</p>
-                </div>
-                <div class="p-8 border-b border-zinc-900 space-y-2">
-                    <h3 class="text-white font-medium">Creativity</h3>
-                    <p class="text-zinc-500 text-sm font-light">Movie ideas, stories, Roblox help, lyrics, image generation and more.</p>
-                </div>
-                <div class="p-8 border-b border-zinc-900 md:border-b-0 md:border-r space-y-2">
-                    <h3 class="text-white font-medium">Everyday tasks</h3>
-                    <p class="text-zinc-500 text-sm font-light">Plan trips, draft emails, organize to-dos, and answer quick questions.</p>
+                    <p class="text-zinc-500 text-sm font-light">Write, debug, refactor, and understand clean code.</p>
                 </div>
                 <div class="p-8 space-y-2">
-                    <h3 class="text-white font-medium">Image generation</h3>
-                    <p class="text-zinc-500 text-sm font-light">Just ask Axid to draw or generate an image — it handles the rest.</p>
+                    <h3 class="text-white font-medium">Roblox Development</h3>
+                    <p class="text-zinc-500 text-sm font-light">Optimize logic scripts, replication mechanics, and setups cleanly.</p>
                 </div>
-            </div>
-            <div>
-                <button onclick="switchView('chat')" class="bg-white text-black text-sm px-6 py-2.5 rounded-xl font-medium hover:bg-zinc-200 transition-all">
-                    Start chatting
-                </button>
             </div>
         </section>
 
+        <!-- 3. CHAT VIEW -->
         <section id="view-chat" class="app-view hidden fixed inset-0 w-full h-full bg-black z-50 flex-row">
             <aside class="w-64 border-r border-zinc-900 bg-[#050505] flex flex-col h-full justify-between shrink-0">
                 <div class="p-4 flex flex-col flex-1 min-h-0">
-                    <div class="flex items-center space-x-2 mb-4 px-2 cursor-pointer" onclick="switchView('home')">
+                    <div class="flex items-center space-x-2 mb-4 px-2 cursor-pointer" id="sidebar-logo">
                         <span class="text-white font-bold text-base tracking-tight">Axid AI</span>
                     </div>
-                    <button onclick="startNewChat()" class="w-full text-left bg-zinc-900 border border-zinc-800 text-zinc-200 rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center space-x-2 mb-6">
+                    <button id="new-chat-btn" class="w-full text-left bg-zinc-900 border border-zinc-800 text-zinc-200 rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center space-x-2 mb-6">
                         <i class="fa-solid fa-plus text-xs text-zinc-400"></i>
                         <span>New chat</span>
                     </button>
                     <div class="text-zinc-600 text-xs font-semibold tracking-wider uppercase px-2 mb-3">History</div>
                     <div class="flex-1 overflow-y-auto space-y-1 text-sm font-light text-zinc-400">
-                        <div onclick="executeChatQuery('Holy books mentioned in the Quran')" class="truncate p-2 rounded-lg hover:bg-zinc-900 cursor-pointer flex items-center space-x-2">
+                        <div data-prompt="Holy books mentioned in the Quran" class="history-item truncate p-2 rounded-lg hover:bg-zinc-900 cursor-pointer flex items-center space-x-2">
                             <i class="fa-regular fa-comment text-xs text-zinc-500"></i>
                             <span class="truncate">Holy books mentioned...</span>
                         </div>
-                        <div onclick="executeChatQuery('Give me the latest news')" class="truncate p-2 rounded-lg hover:bg-zinc-900 cursor-pointer flex items-center space-x-2">
-                            <i class="fa-regular fa-comment text-xs text-zinc-500"></i>
-                            <span class="truncate">Give me the latest news</span>
-                        </div>
-                        <div onclick="executeChatQuery('Who created you')" class="truncate p-2 rounded-lg bg-zinc-900/50 text-zinc-200 cursor-pointer flex items-center space-x-2">
+                        <div data-prompt="Who created you" class="history-item truncate p-2 rounded-lg bg-zinc-900/50 text-zinc-200 cursor-pointer flex items-center space-x-2">
                             <i class="fa-regular fa-comment text-xs text-zinc-400"></i>
                             <span class="truncate font-medium">Who created me</span>
                         </div>
                     </div>
                 </div>
                 <div class="p-4 border-t border-zinc-900 space-y-1 text-sm font-medium text-zinc-400">
-                    <button onclick="switchView('home')" class="w-full flex items-center space-x-3 p-2.5 rounded-xl hover:bg-zinc-900 hover:text-white transition-colors">
+                    <button id="sidebar-home-btn" class="w-full flex items-center space-x-3 p-2.5 rounded-xl hover:bg-zinc-900 hover:text-white transition-colors">
                         <i class="fa-solid fa-house text-zinc-500 w-4"></i>
                         <span>Home</span>
-                    </button>
-                    <button onclick="switchView('about')" class="w-full flex items-center space-x-3 p-2.5 rounded-xl hover:bg-zinc-900 hover:text-white transition-colors">
-                        <i class="fa-solid fa-circle-info text-zinc-500 w-4"></i>
-                        <span>About</span>
                     </button>
                 </div>
             </aside>
@@ -153,46 +119,38 @@
                 <div id="chat-canvas" class="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-center">
                     <div id="default-chat-greeting" class="text-center space-y-2 max-w-lg">
                         <h2 class="text-3xl font-bold text-white">How can I help you today?</h2>
-                        <p class="text-zinc-500 text-sm font-light">Ask anything. Toggle the image button to generate visuals.</p>
+                        <p class="text-zinc-500 text-sm font-light">Ask anything. Tap enter to communicate.</p>
                     </div>
                     <div id="chat-logs" class="w-full max-w-2xl hidden flex flex-col space-y-6 text-sm md:text-base font-light pb-12"></div>
                 </div>
                 <div class="w-full max-w-2xl mx-auto px-4 pb-6">
-                    <form onsubmit="handleChatSubmit(event)" class="w-full bg-[#111111] border border-zinc-900 rounded-full px-4 py-2.5 flex items-center justify-between">
+                    <form id="chat-form" class="w-full bg-[#111111] border border-zinc-900 rounded-full px-4 py-2.5 flex items-center justify-between">
                         <input type="text" id="chat-input" placeholder="Message Axid AI..." autocomplete="off" class="w-full bg-transparent text-white placeholder-zinc-500 focus:outline-none text-sm px-2 font-light" />
-                        <div class="flex items-center space-x-3">
-                            <button type="button" class="text-zinc-500 hover:text-zinc-300"><i class="fa-solid fa-microphone text-sm"></i></button>
-                            <button type="submit" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-arrow-up text-xs"></i>
-                            </button>
-                        </div>
+                        <button type="submit" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors shrink-0">
+                            <i class="fa-solid fa-arrow-up text-xs"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <section id="view-feedback" class="app-view w-full max-w-4xl px-6 py-16 flex-col text-center space-y-8">
+        <!-- 4. FEEDBACK VIEW -->
+        <section id="view-feedback" class="app-view hidden w-full max-w-4xl px-6 py-16 flex-col text-center space-y-8">
             <div class="space-y-2">
                 <h2 class="text-4xl font-bold text-white">Feedback</h2>
-                <p class="text-zinc-500 text-sm font-light">Help us improve Axid AI by sharing your experience.</p>
+                <p class="text-zinc-500 text-sm font-light">Help us improve Axid AI.</p>
             </div>
             <div class="max-w-xl mx-auto w-full bg-[#09090b] border border-zinc-900 rounded-2xl p-6 space-y-6">
-                <div class="flex items-center justify-center space-x-3 text-2xl text-zinc-600">
-                    <i class="fa-regular fa-star cursor-pointer hover:text-white star-btn" onclick="rateStars(1)"></i>
-                    <i class="fa-regular fa-star cursor-pointer hover:text-white star-btn" onclick="rateStars(2)"></i>
-                    <i class="fa-regular fa-star cursor-pointer hover:text-white star-btn" onclick="rateStars(3)"></i>
-                    <i class="fa-regular fa-star cursor-pointer hover:text-white star-btn" onclick="rateStars(4)"></i>
-                    <i class="fa-regular fa-star cursor-pointer hover:text-white star-btn" onclick="rateStars(5)"></i>
-                </div>
-                <textarea id="feedback-text" rows="4" placeholder="Write your feedback here..." class="w-full bg-black border border-zinc-900 rounded-xl p-4 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-700 resize-none font-light"></textarea>
-                <button onclick="submitFeedback()" class="w-full bg-white text-black font-medium text-sm py-3 rounded-xl hover:bg-zinc-200 transition-all">Submit Feedback</button>
+                <textarea id="feedback-text" rows="4" placeholder="Write your feedback here..." class="w-full bg-black border border-zinc-900 rounded-xl p-4 text-sm text-white placeholder-zinc-600 focus:outline-none resize-none font-light"></textarea>
+                <button id="feedback-submit-btn" class="w-full bg-white text-black font-medium text-sm py-3 rounded-xl hover:bg-zinc-200 transition-all">Submit Feedback</button>
             </div>
         </section>
 
-        <section id="view-contact" class="app-view w-full max-w-5xl px-6 py-16 flex-col text-center space-y-10">
+        <!-- 5. CONTACT VIEW -->
+        <section id="view-contact" class="app-view hidden w-full max-w-5xl px-6 py-16 flex-col text-center space-y-10">
             <div class="space-y-2">
                 <h2 class="text-4xl font-bold text-white">Contact Axid AI</h2>
-                <p class="text-zinc-400 text-sm font-light max-w-lg mx-auto">Need help, have feedback, or want to collaborate? Reach out through any channels below.</p>
+                <p class="text-zinc-400 text-sm font-light max-w-lg mx-auto">Reach out through any channels below.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left w-full">
                 <div class="bg-[#09090b] border border-zinc-900 rounded-2xl p-6 flex flex-col justify-between h-48">
@@ -223,107 +181,5 @@
         </section>
 
     </main>
-
-    <script>
-        function switchView(viewId) {
-            const views = document.querySelectorAll('.app-view');
-            views.forEach(v => {
-                v.classList.remove('active-view');
-                if(v.id !== 'view-chat') v.classList.add('hidden');
-            });
-
-            const target = document.getElementById(`view-${viewId}`);
-            if (viewId === 'chat') {
-                target.classList.remove('hidden');
-                target.classList.add('active-view');
-                document.getElementById('top-nav').style.display = 'none';
-            } else {
-                target.classList.remove('hidden');
-                target.classList.add('active-view');
-                document.getElementById('top-nav').style.display = 'flex';
-                document.getElementById('view-chat').classList.add('hidden');
-            }
-
-            const subBtns = document.querySelectorAll('.nav-btn');
-            subBtns.forEach(b => b.classList.remove('text-white'));
-            const targetBtn = document.getElementById(`btn-${viewId}`);
-            if(targetBtn) targetBtn.classList.add('text-white');
-        }
-
-        function handleChatSubmit(e) {
-            e.preventDefault();
-            const input = document.getElementById('chat-input');
-            const msg = input.value.trim();
-            if(!msg) return;
-            executeChatQuery(msg);
-            input.value = '';
-        }
-
-        function executeChatQuery(userMessage) {
-            document.getElementById('default-chat-greeting').classList.add('hidden');
-            const logs = document.getElementById('chat-logs');
-            logs.classList.remove('hidden');
-
-            const userBox = `
-                <div class="flex flex-col items-end w-full">
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl px-4 py-2.5 max-w-xl text-zinc-100 font-normal">
-                        ${userMessage}
-                    </div>
-                </div>
-            `;
-            logs.insertAdjacentHTML('beforeend', userBox);
-
-            let reply = "Insightful choice! Let's approach this directly and break it down. What exactly are we optimizing here?";
-            const check = userMessage.toLowerCase().trim();
-
-            if (check.includes('who created you') || check.includes('who made you') || check.includes('creator')) {
-                reply = "I was created by Muhammad Bilal.";
-            } else if (['hi', 'hello', 'yoo', 'hey'].includes(check)) {
-                reply = "Hey there! Ready to build something futuristic or smash out some code? Hit me with your true intent.";
-            } else if (check.includes('roblox')) {
-                reply = "Handling layouts or processing replication loops in Roblox? Let's make sure the script is optimized. Show me what you're tracking.";
-            }
-
-            setTimeout(() => {
-                const aiBox = `
-                    <div class="flex flex-col items-start w-full space-y-1">
-                        <div class="text-xs text-zinc-500 font-medium pl-1">Axid AI</div>
-                        <div class="text-zinc-300 max-w-2xl pl-1 font-light leading-relaxed">${reply}</div>
-                    </div>
-                `;
-                logs.insertAdjacentHTML('beforeend', aiBox);
-                const canvas = document.getElementById('chat-canvas');
-                canvas.scrollTop = canvas.scrollHeight;
-            }, 300);
-        }
-
-        function startNewChat() {
-            document.getElementById('chat-logs').innerHTML = '';
-            document.getElementById('chat-logs').classList.add('hidden');
-            document.getElementById('default-chat-greeting').classList.remove('hidden');
-        }
-
-        let rate = 0;
-        function rateStars(val) {
-            rate = val;
-            const stars = document.querySelectorAll('.star-btn');
-            stars.forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('fa-regular', 'text-zinc-600');
-                    s.classList.add('fa-solid', 'text-white');
-                } else {
-                    s.classList.remove('fa-solid', 'text-white');
-                    s.classList.add('fa-regular', 'text-zinc-600');
-                }
-            });
-        }
-
-        function submitFeedback() {
-            alert('Feedback submitted. Thanks for optimizing Axid AI!');
-            document.getElementById('feedback-text').value = '';
-            rateStars(0);
-            switchView('home');
-        }
-    </script>
 </body>
 </html>
