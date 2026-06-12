@@ -1,21 +1,46 @@
 import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai@0.1.3/+esm";
 
+// Your API Key
+const API_KEY = "YOUR_API_KEY_HERE";
+
+// View Controller
 function switchView(viewId) {
     document.querySelectorAll('.app-view').forEach(v => v.classList.add('hidden'));
     document.getElementById('view-' + viewId).classList.remove('hidden');
 }
 
+// AI Controller
+async function askAI(prompt) {
+    const logs = document.getElementById('chat-logs');
+    logs.innerHTML += `<div class="p-3 bg-zinc-900 rounded-lg text-white">User: ${prompt}</div>`;
+    try {
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const result = await model.generateContent(prompt);
+        logs.innerHTML += `<div class="p-3 text-zinc-300">Axid AI: ${result.response.text()}</div>`;
+    } catch (e) {
+        logs.innerHTML += `<div class="p-3 text-red-500">Error: Check API Key.</div>`;
+    }
+}
+
+// Wiring the site (This is why it will work)
 document.addEventListener('DOMContentLoaded', () => {
-    // Nav links
-    document.getElementById('nav-logo').addEventListener('click', () => switchView('home'));
-    document.getElementById('btn-nav-home').addEventListener('click', () => switchView('home'));
-    document.getElementById('btn-nav-about').addEventListener('click', () => switchView('about'));
-    document.getElementById('btn-nav-chat').addEventListener('click', () => switchView('chat'));
-    document.getElementById('btn-nav-contact').addEventListener('click', () => switchView('contact'));
-    document.getElementById('btn-nav-feedback').addEventListener('click', () => switchView('feedback'));
-    
-    // Buttons
-    document.getElementById('btn-hero-start').addEventListener('click', () => switchView('chat'));
-    
-    console.log("Buttons successfully wired.");
+    // Nav
+    document.getElementById('logo').addEventListener('click', () => switchView('home'));
+    document.getElementById('nav-home').addEventListener('click', () => switchView('home'));
+    document.getElementById('nav-about').addEventListener('click', () => switchView('about'));
+    document.getElementById('nav-chat').addEventListener('click', () => switchView('chat'));
+    document.getElementById('nav-contact').addEventListener('click', () => switchView('contact'));
+    document.getElementById('nav-feedback').addEventListener('click', () => switchView('feedback'));
+    document.getElementById('btn-start').addEventListener('click', () => switchView('chat'));
+
+    // Chat
+    document.getElementById('chat-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chat-input');
+        if (input.value.trim()) {
+            askAI(input.value.trim());
+            input.value = '';
+        }
+    });
 });
