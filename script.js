@@ -1,25 +1,47 @@
 import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai@0.1.3/+esm";
 
-console.log("Axid AI: Script has started loading...");
+console.log("Axid AI: script.js has loaded successfully.");
 
-// Simple function to test if buttons work
-function testButton() {
-    alert("The button is working!");
+const API_KEY = "AQ.Ab8RN6K5_0xKQ7Tox7Mp-v_dsQDqDd9AwRCMok8vHqT8CHRc2g"; // Replace with your actual key
+
+// 1. Navigation Logic
+function switchView(viewName) {
+    console.log("Switching to:", viewName);
+    document.getElementById('view-home').classList.add('hidden');
+    document.getElementById('view-chat').classList.add('hidden');
+    document.getElementById(`view-${viewName}`).classList.remove('hidden');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Axid AI: DOM fully loaded and buttons are being wired.");
+// 2. AI Logic
+async function sendMessage(text) {
+    const logs = document.getElementById('chat-logs');
+    logs.innerHTML += `<div class="text-right">User: ${text}</div>`;
 
-    // Select the button by its ID (make sure it matches your HTML)
-    const startBtn = document.getElementById('hero-start-chat'); 
-    
-    if (startBtn) {
-        startBtn.addEventListener('click', () => {
-            console.log("Start Chatting button clicked!");
-            alert("Button click detected!");
-            // switchView('chat'); // Uncomment this later once the alert works
-        });
-    } else {
-        console.error("Error: Could not find button with ID 'hero-start-chat'.");
+    try {
+        const genAI = new GoogleGenerativeAI(API_KEY);AQ.Ab8RN6K5_0xKQ7Tox7Mp-v_dsQDqDd9AwRCMok8vHqT8CHRc2g
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const result = await model.generateContent(text);
+        logs.innerHTML += `<div class="text-zinc-400">Axid AI: ${result.response.text()}</div>`;
+    } catch (e) {
+        logs.innerHTML += `<div class="text-red-500">Error: Check your API Key!</div>`;
+        console.error("AI Error:", e);
     }
+}
+
+// 3. Button Wiring (The glue that makes it work)
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded, wiring buttons...");
+
+    document.getElementById('btn-home').addEventListener('click', () => switchView('home'));
+    document.getElementById('btn-chat').addEventListener('click', () => switchView('chat'));
+    document.getElementById('start-btn').addEventListener('click', () => switchView('chat'));
+
+    document.getElementById('chat-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chat-input');
+        if (input.value) {
+            sendMessage(input.value);
+            input.value = '';
+        }
+    });
 });
