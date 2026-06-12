@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axid AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-black text-zinc-200">
-    
-    <!-- NAVIGATION -->
-    <nav id="top-nav" class="border-b border-zinc-900 bg-black/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-2 cursor-pointer" id="nav-logo">
-            <span class="text-white font-bold">Axid AI</span>
-        </div>
-        <div class="flex items-center space-x-6 text-sm text-zinc-400">
-            <button class="nav-btn text-white" id="btn-home">Home</button>
-            <button class="nav-btn" id="btn-about">About</button>
-            <button class="nav-btn" id="btn-chat">Chat</button>
-        </div>
-    </nav>
-
-    <main id="main-content">
-        <!-- HOME VIEW -->
-        <section id="view-home" class="app-view active-view text-center py-20">
-            <h1 class="text-6xl font-bold text-white">Axid AI</h1>
-            <button id="hero-start-chat" class="mt-8 bg-white text-black px-6 py-3 rounded-xl font-bold">Start Chatting</button>
-        </section>
-
-        <!-- CHAT VIEW -->
-        <section id="view-chat" class="app-view hidden">
-            <div id="chat-logs" class="max-w-2xl mx-auto p-6 space-y-4"></div>
-            <form id="chat-form" class="max-w-2xl mx-auto p-6">
-                <input type="text" id="chat-input" class="w-full bg-zinc-900 p-4 text-white" placeholder="Message...">
-            </form>
-        </section>
-    </main>
-
-    <!-- CRITICAL: This MUST be type="module" -->
-    <script type="module" src="script.js"></script>
+<!-- Inside your index.html -->
+<script type="module" src="script.js"></script>
 </body>
 </html>
