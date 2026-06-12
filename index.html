@@ -6,31 +6,74 @@
     <title>Axid AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-zinc-300 min-h-screen">
 
     <!-- NAVIGATION -->
-    <nav class="p-6 flex gap-6">
-        <button id="btn-home" class="font-bold">Home</button>
-        <button id="btn-chat" class="text-zinc-400">Chat</button>
+    <nav class="flex items-center justify-between px-8 py-6 border-b border-zinc-900">
+        <div class="font-bold text-white cursor-pointer" id="logo">Axid AI</div>
+        <div class="flex items-center space-x-6 text-sm">
+            <button class="nav-link" onclick="switchView('home')">Home</button>
+            <button class="nav-link" onclick="switchView('about')">About</button>
+            <button class="nav-link" onclick="switchView('chat')">Chat</button>
+            <button class="nav-link" onclick="switchView('contact')">Contact</button>
+            <button class="nav-link" onclick="switchView('feedback')">Feedback</button>
+            <button class="text-white">Sign out</button>
+        </div>
     </nav>
 
-    <!-- HOME VIEW -->
-    <main id="view-home" class="app-view p-10 text-center">
-        <h1 class="text-6xl font-bold">Axid AI</h1>
-        <p class="mt-4 text-zinc-400">Your futuristic AI assistant.</p>
-        <button id="start-btn" class="mt-8 bg-white text-black px-6 py-3 rounded-lg font-bold">Start Chatting</button>
+    <!-- HOME VIEW (image_3.png) -->
+    <main id="view-home" class="app-view p-20 text-center">
+        <h1 class="text-6xl font-bold text-white">Axid AI</h1>
+        <p class="mt-4 text-zinc-500">Your futuristic AI assistant for everything.</p>
+        <div class="mt-8 flex justify-center gap-4">
+            <button onclick="switchView('chat')" class="bg-white text-black px-6 py-3 rounded-xl font-bold">Start Chatting →</button>
+        </div>
     </main>
 
-    <!-- CHAT VIEW -->
-    <main id="view-chat" class="app-view p-10 hidden">
-        <div id="chat-logs" class="max-w-xl mx-auto space-y-4"></div>
-        <form id="chat-form" class="max-w-xl mx-auto mt-6">
-            <input type="text" id="chat-input" class="w-full bg-zinc-900 p-4 rounded-lg border border-zinc-700" placeholder="Type a message...">
+    <!-- ABOUT VIEW (image_4.png) -->
+    <main id="view-about" class="app-view hidden p-10 max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-white mb-8">About Axid AI</h1>
+        <div class="grid grid-cols-2 gap-6">
+            <div class="p-6 border border-zinc-800 rounded-xl">Learning<p class="text-zinc-500 text-sm">Summaries and study guides.</p></div>
+            <div class="p-6 border border-zinc-800 rounded-xl">Chatting<p class="text-zinc-500 text-sm">Friendly conversation.</p></div>
+            <div class="p-6 border border-zinc-800 rounded-xl">Coding<p class="text-zinc-500 text-sm">Write and debug code.</p></div>
+            <div class="p-6 border border-zinc-800 rounded-xl">Creativity<p class="text-zinc-500 text-sm">Movie ideas and stories.</p></div>
+        </div>
+    </main>
+
+    <!-- CHAT VIEW (image_5.png) -->
+    <main id="view-chat" class="app-view hidden h-[calc(100vh-80px)] flex">
+        <div class="w-64 border-r border-zinc-900 p-4">
+            <button class="w-full bg-zinc-900 p-3 rounded-lg text-left">+ New chat</button>
+            <div class="mt-4 text-xs text-zinc-500">HISTORY</div>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center">
+            <h2 class="text-2xl font-bold text-white mb-4">How can I help you today?</h2>
+            <form id="chat-form" class="w-full max-w-2xl px-4">
+                <input type="text" id="chat-input" class="w-full bg-zinc-900 p-4 rounded-xl border border-zinc-800 text-white" placeholder="Message Axid AI...">
+            </form>
+        </div>
+    </main>
+
+    <!-- CONTACT VIEW (image_6.png) -->
+    <main id="view-contact" class="app-view hidden p-20 text-center">
+        <h1 class="text-4xl font-bold text-white">Contact Axid AI</h1>
+        <div class="mt-10 grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="p-6 border border-zinc-800 rounded-xl">WhatsApp</div>
+            <div class="p-6 border border-zinc-800 rounded-xl">Email</div>
+            <div class="p-6 border border-zinc-800 rounded-xl">Instagram</div>
+        </div>
+    </main>
+
+    <!-- FEEDBACK VIEW (image_7.png) -->
+    <main id="view-feedback" class="app-view hidden p-20 text-center">
+        <h1 class="text-4xl font-bold text-white">Feedback</h1>
+        <form class="mt-8 max-w-md mx-auto">
+            <textarea class="w-full bg-zinc-900 p-4 rounded-xl text-white" placeholder="Write your feedback here..."></textarea>
+            <button class="mt-4 bg-white text-black px-6 py-2 rounded-lg">Submit Feedback</button>
         </form>
     </main>
 
-    <!-- CRITICAL: The type="module" tag is REQUIRED for the AI to load -->
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
