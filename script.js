@@ -44,7 +44,7 @@ async function executeChatQuery(userMessage) {
     `;
     if (logs) logs.insertAdjacentHTML('beforeend', userBox);
 
-    const API_KEY = "YOUR_API_KEY_HERE"; 
+    const API_KEY = AQ.Ab8RN6K5_0xKQ7Tox7Mp-v_dsQDqDd9AwRCMok8vHqT8CHRc2g
     
     try {
         const genAI = new GoogleGenerativeAI(API_KEY);
