@@ -26,7 +26,60 @@ function switchView(viewId) {
 }
 
 // Adaptive AI Interaction Module
-function executeChatQuery(userMessage) {
+
+async function executeChatQuery(userMessage) {
+    // 1. Setup UI (Keep this, keeps UI unchanged)
+    const greeting = document.getElementById('default-chat-greeting');
+    const logs = document.getElementById('chat-logs');
+    const canvas = document.getElementById('chat-canvas');
+
+    if (greeting) greeting.classList.add('hidden');
+    if (logs) logs.classList.remove('hidden');
+
+    const userBox = `
+        <div class="flex flex-col items-end w-full">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl px-4 py-2.5 max-w-xl text-zinc-100 font-normal">
+                ${userMessage}
+            </div>
+        </div>
+    `;
+    if (logs) logs.insertAdjacentHTML('beforeend', userBox);
+
+    // 2. Gemini API Integration
+    // PASTE YOUR KEY HERE TEMPORARILY FOR TESTING ONLY.
+    // REMOVE THIS BEFORE PUSHING TO GITHUB.
+    const API_KEY = "YOUR_API_KEY_HERE"; 
+    
+    if (API_KEY === "YOUR_API_KEY_HERE") {
+        alert("Please set your API key in script.js to start the chat.");
+        return;
+    }
+
+    try {
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        const result = await model.generateContent(userMessage);
+        const response = await result.response;
+        const text = response.text();
+
+        // 3. UI Update (Keep this, keeps UI unchanged)
+        const aiBox = `
+            <div class="flex flex-col items-start w-full space-y-1">
+                <div class="text-xs text-zinc-500 font-medium pl-1">Axid AI</div>
+                <div class="text-zinc-300 max-w-2xl pl-1 font-light leading-relaxed">${text}</div>
+            </div>
+        `;
+        if (logs) logs.insertAdjacentHTML('beforeend', aiBox);
+        if (canvas) canvas.scrollTop = canvas.scrollHeight;
+
+    } catch (error) {
+        console.error("Error:", error);
+        const errorBox = `<div class="text-red-500">Error: Could not connect to Axid AI.</div>`;
+        if (logs) logs.insertAdjacentHTML('beforeend', errorBox);
+    }
+}
+
     const greeting = document.getElementById('default-chat-greeting');
     const logs = document.getElementById('chat-logs');
     const canvas = document.getElementById('chat-canvas');
