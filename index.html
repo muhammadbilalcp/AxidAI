@@ -4,413 +4,207 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axid AI Mini</title>
 
-    <title>Axid AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+body {
 
-    <link rel="stylesheet" href="styles.css">
+    margin: 0;
 
-    <script src="script.js" defer></script>
+    font-family: Arial, sans-serif;
+
+    background: #0f172a;
+
+    color: white;
+
+    display: flex;
+
+    height: 100vh;
+
+    flex-direction: column;
+
+}
+
+header {
+
+    padding: 15px;
+
+    background: #111827;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+#chat {
+
+    flex: 1;
+
+    padding: 10px;
+
+    overflow-y: auto;
+
+}
+
+.message {
+
+    margin: 10px 0;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    max-width: 80%;
+
+}
+
+.user {
+
+    background: #2563eb;
+
+    margin-left: auto;
+
+}
+
+.ai {
+
+    background: #1f2937;
+
+}
+
+#inputArea {
+
+    display: flex;
+
+    padding: 10px;
+
+    background: #111827;
+
+}
+
+input {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    outline: none;
+
+}
+
+button {
+
+    margin-left: 10px;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #22c55e;
+
+    color: black;
+
+    font-weight: bold;
+
+}
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+</style>
 
 </head>
 
-<body class="bg-black text-white min-h-screen">
+<body>
 
-    <!-- NAVBAR -->
+<header>⚡ Axid AI Mini</header>
 
-    <nav id="top-nav" class="border-b border-zinc-900 bg-black px-6 py-4 flex items-center justify-between">
+<div id="chat"></div>
 
-        <div id="nav-logo" class="cursor-pointer flex items-center gap-2">
+<div id="inputArea">
 
-            <div class="w-2 h-2 rounded-full bg-white"></div>
+    <input id="input" placeholder="Ask something..." />
 
-            <span class="font-bold text-lg">Axid AI</span>
+    <button onclick="send()">Send</button>
 
-        </div>
+</div>
 
-        <div class="flex items-center gap-6 text-zinc-400">
+<script>
 
-            <button id="btn-home" class="nav-btn text-white">Home</button>
+const chat = document.getElementById("chat");
 
-            <button id="btn-about" class="nav-btn">About</button>
+function addMessage(text, type) {
 
-            <button id="btn-chat" class="nav-btn">Chat</button>
+    const div = document.createElement("div");
 
-            <button id="btn-contact" class="nav-btn">Contact</button>
+    div.className = "message " + type;
 
-            <button id="btn-feedback" class="nav-btn">Feedback</button>
+    div.innerText = text;
 
-        </div>
+    chat.appendChild(div);
 
-    </nav>
+    chat.scrollTop = chat.scrollHeight;
 
-    <main class="flex-1">
+}
 
-        <!-- HOME -->
+function fakeAIResponse(msg) {
 
-        <section id="view-home" class="app-view active-view flex flex-col items-center justify-center text-center py-24 px-6">
+    msg = msg.toLowerCase();
 
-            <div class="bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-full text-xs text-zinc-400">
+    if (msg.includes("hello")) return "Hey! I'm Axid AI Mini 🤖";
 
-                Now in early access
+    if (msg.includes("who are you")) return "I'm a simple AI built in one file.";
 
-            </div>
+    if (msg.includes("time")) return "Current time: " + new Date().toLocaleTimeString();
 
-            <h1 class="text-6xl md:text-7xl font-bold mt-8">
+    if (msg.includes("joke")) return "Why? Because JavaScript never sleeps 😆";
 
-                Axid AI
+    
 
-            </h1>
+    return "I heard: " + msg + " (but I’m still learning)";
 
-            <p class="text-zinc-400 mt-6 max-w-xl text-lg">
+}
 
-                Your futuristic AI assistant for everything.
+function send() {
 
-            </p>
+    const input = document.getElementById("input");
 
-            <div class="flex flex-wrap justify-center gap-4 mt-8">
+    const text = input.value.trim();
 
-                <button id="hero-start-chat"
+    if (!text) return;
 
-                    class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
+    addMessage(text, "user");
 
-                    Start Chatting
+    input.value = "";
 
-                </button>
+    setTimeout(() => {
 
-                <button id="hero-learn-more"
+        const reply = fakeAIResponse(text);
 
-                    class="border border-zinc-700 px-6 py-3 rounded-xl">
+        addMessage(reply, "ai");
 
-                    Learn More
+    }, 500);
 
-                </button>
+}
 
-            </div>
-
-        </section>
-
-        <!-- ABOUT -->
-
-        <section id="view-about"
-
-            class="app-view hidden flex-col px-6 py-16 max-w-5xl mx-auto">
-
-            <h2 class="text-4xl font-bold mb-4">
-
-                About Axid AI
-
-            </h2>
-
-            <p class="text-zinc-400 mb-12">
-
-                Your all-in-one futuristic AI assistant.
-
-            </p>
-
-            <div class="grid md:grid-cols-2 gap-6">
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold text-xl mb-2">
-
-                        Learning
-
-                    </h3>
-
-                    <p class="text-zinc-500">
-
-                        Study guides, summaries and explanations.
-
-                    </p>
-
-                </div>
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold text-xl mb-2">
-
-                        Chatting
-
-                    </h3>
-
-                    <p class="text-zinc-500">
-
-                        Friendly AI conversations.
-
-                    </p>
-
-                </div>
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold text-xl mb-2">
-
-                        Coding
-
-                    </h3>
-
-                    <p class="text-zinc-500">
-
-                        Debug and build projects faster.
-
-                    </p>
-
-                </div>
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold text-xl mb-2">
-
-                        Roblox Development
-
-                    </h3>
-
-                    <p class="text-zinc-500">
-
-                        Scripting help and game creation.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- CHAT -->
-
-        <section id="view-chat"
-
-            class="app-view hidden fixed inset-0 bg-black z-50">
-
-            <aside
-
-                class="w-64 border-r border-zinc-900 bg-[#050505] flex flex-col">
-
-                <div class="p-4">
-
-                    <div id="sidebar-logo"
-
-                        class="font-bold text-lg cursor-pointer mb-6">
-
-                        Axid AI
-
-                    </div>
-
-                    <button id="new-chat-btn"
-
-                        class="w-full bg-zinc-900 rounded-xl p-3 text-left mb-6">
-
-                        + New Chat
-
-                    </button>
-
-                    <div class="text-xs uppercase text-zinc-500 mb-3">
-
-                        History
-
-                    </div>
-
-                    <div class="history-item cursor-pointer p-2 rounded-lg hover:bg-zinc-900"
-
-                        data-prompt="Who created you">
-
-                        Who created you
-
-                    </div>
-
-                </div>
-
-                <div class="mt-auto p-4 border-t border-zinc-900">
-
-                    <button id="sidebar-home-btn"
-
-                        class="w-full text-left">
-
-                        Home
-
-                    </button>
-
-                </div>
-
-            </aside>
-
-            <div class="flex-1 flex flex-col">
-
-                <div id="chat-canvas"
-
-                    class="flex-1 overflow-y-auto p-6">
-
-                    <div id="default-chat-greeting"
-
-                        class="text-center mt-32">
-
-                        <h2 class="text-3xl font-bold">
-
-                            How can I help you today?
-
-                        </h2>
-
-                        <p class="text-zinc-500 mt-3">
-
-                            Ask anything.
-
-                        </p>
-
-                    </div>
-
-                    <div id="chat-logs"
-
-                        class="hidden max-w-3xl mx-auto space-y-6">
-
-                    </div>
-
-                </div>
-
-                <div class="p-6">
-
-                    <form id="chat-form"
-
-                        class="max-w-3xl mx-auto bg-zinc-900 rounded-full flex items-center px-4 py-3">
-
-                        <input
-
-                            id="chat-input"
-
-                            type="text"
-
-                            placeholder="Message Axid AI..."
-
-                            class="flex-1 bg-transparent outline-none">
-
-                        <button type="submit">
-
-                            <i class="fas fa-arrow-up"></i>
-
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- FEEDBACK -->
-
-        <section id="view-feedback"
-
-            class="app-view hidden flex-col items-center py-16 px-6">
-
-            <h2 class="text-4xl font-bold mb-3">
-
-                Feedback
-
-            </h2>
-
-            <p class="text-zinc-500 mb-8">
-
-                Help us improve Axid AI.
-
-            </p>
-
-            <div class="w-full max-w-xl">
-
-                <textarea
-
-                    id="feedback-text"
-
-                    rows="5"
-
-                    placeholder="Write your feedback..."
-
-                    class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-
-                </textarea>
-
-                <button
-
-                    id="feedback-submit-btn"
-
-                    class="w-full mt-4 bg-white text-black rounded-xl py-3 font-semibold">
-
-                    Submit Feedback
-
-                </button>
-
-            </div>
-
-        </section>
-
-        <!-- CONTACT -->
-
-        <section id="view-contact"
-
-            class="app-view hidden flex-col py-16 px-6">
-
-            <h2 class="text-4xl font-bold text-center mb-3">
-
-                Contact Axid AI
-
-            </h2>
-
-            <p class="text-zinc-500 text-center mb-10">
-
-                Reach out anytime.
-
-            </p>
-
-            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold mb-2">WhatsApp</h3>
-
-                    <p class="text-zinc-500">
-
-                        Chat directly.
-
-                    </p>
-
-                </div>
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold mb-2">Email</h3>
-
-                    <p class="text-zinc-500">
-
-                        muhammadbilalcp@gmail.com
-
-                    </p>
-
-                </div>
-
-                <div class="border border-zinc-900 rounded-2xl p-6">
-
-                    <h3 class="font-semibold mb-2">Instagram</h3>
-
-                    <p class="text-zinc-500">
-
-                        @axidaiofficial
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+</script>
 
 </body>
 
