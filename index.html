@@ -1,4 +1,36 @@
-<!-- Inside your index.html -->
-<script type="module" src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axid AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+    <!-- NAVIGATION -->
+    <nav class="p-6 flex gap-6">
+        <button id="btn-home" class="font-bold">Home</button>
+        <button id="btn-chat" class="text-zinc-400">Chat</button>
+    </nav>
+
+    <!-- HOME VIEW -->
+    <main id="view-home" class="app-view p-10 text-center">
+        <h1 class="text-6xl font-bold">Axid AI</h1>
+        <p class="mt-4 text-zinc-400">Your futuristic AI assistant.</p>
+        <button id="start-btn" class="mt-8 bg-white text-black px-6 py-3 rounded-lg font-bold">Start Chatting</button>
+    </main>
+
+    <!-- CHAT VIEW -->
+    <main id="view-chat" class="app-view p-10 hidden">
+        <div id="chat-logs" class="max-w-xl mx-auto space-y-4"></div>
+        <form id="chat-form" class="max-w-xl mx-auto mt-6">
+            <input type="text" id="chat-input" class="w-full bg-zinc-900 p-4 rounded-lg border border-zinc-700" placeholder="Type a message...">
+        </form>
+    </main>
+
+    <!-- CRITICAL: The type="module" tag is REQUIRED for the AI to load -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
+
