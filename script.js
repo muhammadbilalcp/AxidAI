@@ -1,3 +1,4 @@
+import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai@0.1.3/+esm";
 // Production View Toggling System
 function switchView(viewId) {
     const views = document.querySelectorAll('.app-view');
