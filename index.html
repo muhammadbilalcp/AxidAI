@@ -2,184 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axid AI</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Link to your styles.css -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Link to your script.js -->
-    <⁠<script type="module" src="script.js"></script>
 </head>
-<body class="text-zinc-200 min-h-screen flex flex-col bg-black overflow-x-hidden selection:bg-zinc-800">
-
-    <!-- TOP NAVIGATION BAR -->
+<body class="bg-black text-zinc-200">
+    
+    <!-- NAVIGATION -->
     <nav id="top-nav" class="border-b border-zinc-900 bg-black/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center space-x-2 cursor-pointer" id="nav-logo">
-            <div class="w-2 h-2 rounded-full bg-white"></div>
-            <span class="text-white font-bold text-lg tracking-tight">Axid AI</span>
+            <span class="text-white font-bold">Axid AI</span>
         </div>
-        <div class="flex items-center space-x-6 text-sm font-medium text-zinc-400">
-            <button class="nav-btn hover:text-white transition-colors text-white" id="btn-home">Home</button>
-            <button class="nav-btn hover:text-white transition-colors" id="btn-about">About</button>
-            <button class="nav-btn hover:text-white transition-colors" id="btn-chat">Chat</button>
-            <button class="nav-btn hover:text-white transition-colors" id="btn-contact">Contact</button>
-            <button class="nav-btn hover:text-white transition-colors" id="btn-feedback">Feedback</button>
+        <div class="flex items-center space-x-6 text-sm text-zinc-400">
+            <button class="nav-btn text-white" id="btn-home">Home</button>
+            <button class="nav-btn" id="btn-about">About</button>
+            <button class="nav-btn" id="btn-chat">Chat</button>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT FRAME -->
-    <main class="flex-1 flex flex-col items-center justify-center w-full relative">
-
-        <!-- 1. HOME VIEW -->
-        <section id="view-home" class="app-view active-view w-full max-w-4xl px-6 py-20 flex-col items-center justify-center text-center space-y-8">
-            <div class="inline-flex items-center space-x-2 bg-zinc-900/80 border border-zinc-800 text-zinc-400 text-xs px-4 py-1.5 rounded-full">
-                <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>
-                <span>Now in early access</span>
-            </div>
-            <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-white py-2">Axid AI</h1>
-            <p class="text-zinc-400 text-lg md:text-xl max-w-lg font-light">Your futuristic AI assistant for everything.</p>
-            <div class="pt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-medium">
-                <button id="hero-start-chat" class="bg-white text-black px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-zinc-200 transition-all">
-                    <span>Start Chatting</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
-                <button id="hero-learn-more" class="text-zinc-400 hover:text-white transition-colors px-4 py-3">Learn more</button>
-                <a href="https://youtube.com/@axidaiofficial" target="_blank" class="text-zinc-400 hover:text-white transition-colors px-4 py-3 flex items-center space-x-2">
-                    <i class="fa-brands fa-youtube text-red-500"></i>
-                    <span>YouTube</span>
-                </a>
-                <a href="https://instagram.com/axidaiofficial" target="_blank" class="text-zinc-400 hover:text-white transition-colors px-4 py-3 flex items-center space-x-2">
-                    <i class="fa-brands fa-instagram text-pink-500"></i>
-                    <span>Instagram</span>
-                </a>
-            </div>
+    <main id="main-content">
+        <!-- HOME VIEW -->
+        <section id="view-home" class="app-view active-view text-center py-20">
+            <h1 class="text-6xl font-bold text-white">Axid AI</h1>
+            <button id="hero-start-chat" class="mt-8 bg-white text-black px-6 py-3 rounded-xl font-bold">Start Chatting</button>
         </section>
 
-        <!-- 2. ABOUT VIEW -->
-        <section id="view-about" class="app-view hidden w-full max-w-4xl px-6 py-16 flex-col space-y-10">
-            <div class="space-y-4">
-                <h2 class="text-4xl font-bold text-white">About Axid AI</h2>
-                <p class="text-zinc-400 max-w-2xl font-light">Your all-in-one futuristic AI assistant — designed to feel calm, professional, and fast.</p>
-            </div>
-            <div class="border border-zinc-900 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 bg-zinc-950/40">
-                <div class="p-8 border-b border-zinc-900 md:border-r space-y-2">
-                    <h3 class="text-white font-medium">Learning</h3>
-                    <p class="text-zinc-500 text-sm font-light">Summaries, study guides, and clear explanations on any subject.</p>
-                </div>
-                <div class="p-8 border-b border-zinc-900 space-y-2">
-                    <h3 class="text-white font-medium">Chatting</h3>
-                    <p class="text-zinc-500 text-sm font-light">Friendly conversation, brainstorming, and ideation loops.</p>
-                </div>
-                <div class="p-8 border-b border-zinc-900 md:border-r space-y-2">
-                    <h3 class="text-white font-medium">Coding</h3>
-                    <p class="text-zinc-500 text-sm font-light">Write, debug, refactor, and understand clean code.</p>
-                </div>
-                <div class="p-8 space-y-2">
-                    <h3 class="text-white font-medium">Roblox Development</h3>
-                    <p class="text-zinc-500 text-sm font-light">Optimize logic scripts, replication mechanics, and setups cleanly.</p>
-                </div>
-            </div>
+        <!-- CHAT VIEW -->
+        <section id="view-chat" class="app-view hidden">
+            <div id="chat-logs" class="max-w-2xl mx-auto p-6 space-y-4"></div>
+            <form id="chat-form" class="max-w-2xl mx-auto p-6">
+                <input type="text" id="chat-input" class="w-full bg-zinc-900 p-4 text-white" placeholder="Message...">
+            </form>
         </section>
-
-        <!-- 3. CHAT VIEW -->
-        <section id="view-chat" class="app-view hidden fixed inset-0 w-full h-full bg-black z-50 flex-row">
-            <aside class="w-64 border-r border-zinc-900 bg-[#050505] flex flex-col h-full justify-between shrink-0">
-                <div class="p-4 flex flex-col flex-1 min-h-0">
-                    <div class="flex items-center space-x-2 mb-4 px-2 cursor-pointer" id="sidebar-logo">
-                        <span class="text-white font-bold text-base tracking-tight">Axid AI</span>
-                    </div>
-                    <button id="new-chat-btn" class="w-full text-left bg-zinc-900 border border-zinc-800 text-zinc-200 rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center space-x-2 mb-6">
-                        <i class="fa-solid fa-plus text-xs text-zinc-400"></i>
-                        <span>New chat</span>
-                    </button>
-                    <div class="text-zinc-600 text-xs font-semibold tracking-wider uppercase px-2 mb-3">History</div>
-                    <div class="flex-1 overflow-y-auto space-y-1 text-sm font-light text-zinc-400">
-                        <div data-prompt="Holy books mentioned in the Quran" class="history-item truncate p-2 rounded-lg hover:bg-zinc-900 cursor-pointer flex items-center space-x-2">
-                            <i class="fa-regular fa-comment text-xs text-zinc-500"></i>
-                            <span class="truncate">Holy books mentioned...</span>
-                        </div>
-                        <div data-prompt="Who created you" class="history-item truncate p-2 rounded-lg bg-zinc-900/50 text-zinc-200 cursor-pointer flex items-center space-x-2">
-                            <i class="fa-regular fa-comment text-xs text-zinc-400"></i>
-                            <span class="truncate font-medium">Who created me</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 border-t border-zinc-900 space-y-1 text-sm font-medium text-zinc-400">
-                    <button id="sidebar-home-btn" class="w-full flex items-center space-x-3 p-2.5 rounded-xl hover:bg-zinc-900 hover:text-white transition-colors">
-                        <i class="fa-solid fa-house text-zinc-500 w-4"></i>
-                        <span>Home</span>
-                    </button>
-                </div>
-            </aside>
-
-            <div class="flex-1 flex flex-col h-full bg-black relative min-w-0">
-                <div id="chat-canvas" class="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-center">
-                    <div id="default-chat-greeting" class="text-center space-y-2 max-w-lg">
-                        <h2 class="text-3xl font-bold text-white">How can I help you today?</h2>
-                        <p class="text-zinc-500 text-sm font-light">Ask anything. Tap enter to communicate.</p>
-                    </div>
-                    <div id="chat-logs" class="w-full max-w-2xl hidden flex flex-col space-y-6 text-sm md:text-base font-light pb-12"></div>
-                </div>
-                <div class="w-full max-w-2xl mx-auto px-4 pb-6">
-                    <form id="chat-form" class="w-full bg-[#111111] border border-zinc-900 rounded-full px-4 py-2.5 flex items-center justify-between">
-                        <input type="text" id="chat-input" placeholder="Message Axid AI..." autocomplete="off" class="w-full bg-transparent text-white placeholder-zinc-500 focus:outline-none text-sm px-2 font-light" />
-                        <button type="submit" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors shrink-0">
-                            <i class="fa-solid fa-arrow-up text-xs"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. FEEDBACK VIEW -->
-        <section id="view-feedback" class="app-view hidden w-full max-w-4xl px-6 py-16 flex-col text-center space-y-8">
-            <div class="space-y-2">
-                <h2 class="text-4xl font-bold text-white">Feedback</h2>
-                <p class="text-zinc-500 text-sm font-light">Help us improve Axid AI.</p>
-            </div>
-            <div class="max-w-xl mx-auto w-full bg-[#09090b] border border-zinc-900 rounded-2xl p-6 space-y-6">
-                <textarea id="feedback-text" rows="4" placeholder="Write your feedback here..." class="w-full bg-black border border-zinc-900 rounded-xl p-4 text-sm text-white placeholder-zinc-600 focus:outline-none resize-none font-light"></textarea>
-                <button id="feedback-submit-btn" class="w-full bg-white text-black font-medium text-sm py-3 rounded-xl hover:bg-zinc-200 transition-all">Submit Feedback</button>
-            </div>
-        </section>
-
-        <!-- 5. CONTACT VIEW -->
-        <section id="view-contact" class="app-view hidden w-full max-w-5xl px-6 py-16 flex-col text-center space-y-10">
-            <div class="space-y-2">
-                <h2 class="text-4xl font-bold text-white">Contact Axid AI</h2>
-                <p class="text-zinc-400 text-sm font-light max-w-lg mx-auto">Reach out through any channels below.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left w-full">
-                <div class="bg-[#09090b] border border-zinc-900 rounded-2xl p-6 flex flex-col justify-between h-48">
-                    <div class="space-y-2">
-                        <i class="fa-regular fa-comment-dots text-zinc-400 text-lg"></i>
-                        <h3 class="text-white font-medium">WhatsApp</h3>
-                        <p class="text-zinc-500 text-xs">Chat directly with us</p>
-                    </div>
-                    <a href="https://wa.me/#" target="_blank" class="w-full bg-zinc-900 text-zinc-300 text-center text-xs py-2.5 rounded-xl block hover:bg-zinc-800">Chat on WhatsApp</a>
-                </div>
-                <div class="bg-[#09090b] border border-zinc-900 rounded-2xl p-6 flex flex-col justify-between h-48">
-                    <div class="space-y-2">
-                        <i class="fa-regular fa-envelope text-zinc-400 text-lg"></i>
-                        <h3 class="text-white font-medium">Email</h3>
-                        <p class="text-zinc-400 text-xs break-all">muhammadbilalcp@gmail.com</p>
-                    </div>
-                    <a href="mailto:muhammadbilalcp@gmail.com" class="w-full bg-zinc-900 text-zinc-300 text-center text-xs py-2.5 rounded-xl block hover:bg-zinc-800">Send an Email</a>
-                </div>
-                <div class="bg-[#09090b] border border-zinc-900 rounded-2xl p-6 flex flex-col justify-between h-48">
-                    <div class="space-y-2">
-                        <i class="fa-brands fa-instagram text-zinc-400 text-lg"></i>
-                        <h3 class="text-white font-medium">Instagram</h3>
-                        <p class="text-zinc-400 text-xs">@axidaiofficial</p>
-                    </div>
-                    <a href="https://instagram.com/axidaiofficial" target="_blank" class="w-full bg-zinc-900 text-zinc-300 text-center text-xs py-2.5 rounded-xl block hover:bg-zinc-800">Open Instagram</a>
-                </div>
-            </div>
-        </section>
-
     </main>
+
+    <!-- CRITICAL: This MUST be type="module" -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
