@@ -375,3 +375,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+    alert("JavaScript is working");
+
+});
